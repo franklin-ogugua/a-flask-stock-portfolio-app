@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block styling %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/form_users_style.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="form-wrap">
+  <form class="form" method="post">
+    {{ form.csrf_token }}
+
+    <h1 class="form__title">User Registration</h1>
+
+    <div class="form__group">
+      <input type="text" id="email" name="email" class="form__input" placeholder=" " autocomplete="on" required>
+      <label for="email" class="form__label">Email</label>
+      {% for error in form.email.errors %}
+        <p class="validation-error">[{{ error }}]</p>
+      {% endfor %}
+    </div>
+
+    <div class="form__group">
+      <input type="password" id="password" name="password" class="form__input" placeholder=" " required>
+      <label for="password" class="form__label">Password</label>
+      {% for error in form.password.errors %}
+        <p class="validation-error">[{{ error }}]</p>
+      {% endfor %}
+    </div>
+
+    <button type="submit" class="form__button">Register</button>
+  </form>
+</div>
+{% endblock %}

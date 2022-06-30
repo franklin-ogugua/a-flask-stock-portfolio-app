@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block styling %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/stocks_style.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="stock-container">
+  <div class="stock-table-heading">
+    <h1>Watchlist</h1>
+    <div class="stock-table-heading-links">
+      <a class="add-button-secondary" href="{{ url_for('watchlist.stock_analysis_guide') }}">Stock Analysis Guide</a>
+      <a class="add-button" href="{{ url_for('watchlist.add_watch_stock') }}">Add Watch Stock</a>
+    </div>
+  </div>
+
+  <table class="stock-table">
+    <!-- Table Header Row -->
+    <thead>
+      <tr>
+        <th>Stock Symbol</th>
+        <th>Company Name</th>
+        <th>52-Week Low</th>
+        <th>Share Price</th>
+        <th>52-Week High</th>
+        <th>Market Cap</th>
+        <th>Dividend Per Share</th>
+        <th>P/E Ratio</th>
+        <th>PEG Ratio</th>
+        <th>Profit Margin</th>
+        <th>Price-to-Book Ratio</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <!-- Table Elements (Rows) -->
+    <tbody>
+      {% for watchstock in watchstocks %}
+        <tr>
+          <td>{{ watchstock.stock_symbol }}</td>
+          <td>{{ watchstock.company_name }}</td>
+          <td>${{ watchstock.get_fiftytwo_week_low() }}</td>
+          <td>${{ watchstock.get_current_share_price() }}</td>
+          <td>${{ watchstock.get_fiftytwo_week_high() }}</td>
+          <td>${{ watchstock.get_market_cap() }}</td>
+
+          {% if watchstock.get_dividend_per_share() > 0.0 %}
+            <td class="highlight-green">${{ watchstock.get_dividend_per_share() }}</td>
+          {% else %}
+            <td>${{ watchstock.get_dividend_per_share() }}</td>
+          {% endif %}
+
+          {% if watchstock.get_pe_ratio() < 0.1 %}
+            <td class="highlight-brightred">{{ watchstock.get_pe_ratio() }}</td>
+          {% elif watchstock.get_pe_ratio() < 20 %}
+            <td class="highlight-green">{{ watchstock.get_pe_ratio() }}</td>
+          {% elif watchstock.get_pe_ratio() < 30 %}
+            <td class="highlight-yellow">{{ watchstock.get_pe_ratio() }}</td>
+          {% else %}
+            <td class="highlight-red">{{ watchstock.get_pe_ratio() }}</td>
+          {% endif %}
+
+          {% if watchstock.get_peg_ratio() < 0.1 %}
+            <td class="highlight-brightred">{{ watchstock.get_peg_ratio() }}</td>
+          {% elif watchstock.get_peg_ratio() < 1.5 %}
+            <td class="highlight-green">{{ watchstock.get_peg_ratio() }}</td>
+          {% elif watchstock.get_peg_ratio() < 2.0 %}
+            <td class="highlight-yellow">{{ watchstock.get_peg_ratio() }}</td>
+          {% else %}
+            <td class="highlight-red">{{ watchstock.get_peg_ratio() }}</td>
+          {% endif %}
+
+          {% if watchstock.get_profit_margin() > 10.0 %}
+            <td class="highlight-green">{{ watchstock.get_profit_margin() }}%</td>
+          {% elif watchstock.get_profit_margin() > 3.0 %}
+            <td class="highlight-yellow">{{ watchstock.get_profit_margin() }}</td>
+          {% else %}
+            <td class="highlight-red">{{ watchstock.get_profit_margin() }}</td>
+          {% endif %}
+
+          {% if watchstock.get_price_to_book_ratio() < 2.5 %}
+            <td class="highlight-green">{{ watchstock.get_price_to_book_ratio() }}</td>
+          {% elif watchstock.get_price_to_book_ratio() < 5.0 %}
+            <td class="highlight-yellow">{{ watchstock.get_price_to_book_ratio() }}</td>
+          {% else %}
+            <td class="highlight-red">{{ watchstock.get_price_to_book_ratio() }}</td>
+          {% endif %}
+          <td>
+            <a class="stocks-actions-link" href="{{ url_for('watchlist.delete_watch_stock', id=watchstock.id) }}">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

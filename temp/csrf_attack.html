@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>View My Photos</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+<body>
+    <div class="csrf_form">
+      <form action="http://localhost:5000/add_stock" method="POST">
+          <input type="hidden" name="stock_symbol" value="HACK"/>
+          <input type="hidden" name="number_of_shares" value="1000"/>
+          <input type="hidden" name="purchase_price" value="345.67"/>
+          <input type="submit" value="View my pictures"/>
+      </form>
+    </div>
+</body>

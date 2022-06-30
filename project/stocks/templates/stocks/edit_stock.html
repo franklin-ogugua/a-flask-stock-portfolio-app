@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block styling %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/form_style.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="form-wrap">
+  <h1>Edit Stock ({{ stock.stock_symbol }}):</h1>
+
+  <form method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+    <div class="field">
+      <label for="numberOfShares">Number of Shares</label>
+      <input
+        type="text"
+        id="numberOfShares"
+        name="number_of_shares"
+        placeholder="{{ stock.number_of_shares }}" />
+    </div>
+
+    <div class="field">
+      <label for="purchasePrice">Purchase Price ($)</label>
+      <input
+        type="text"
+        id="purchasePrice"
+        name="purchase_price"
+        placeholder="{{ stock.purchase_price / 100 }}" />
+    </div>
+
+    <div class="field">
+      <label for="purchaseDate">Purchase Date</label>
+      <input
+        type="date"
+        id="purchaseDate"
+        name="purchase_date"
+        value="{{ stock.purchase_date.strftime('%Y-%m-%d') }}" />
+    </div>
+
+    <div class="field">
+      <button type="submit">Update</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

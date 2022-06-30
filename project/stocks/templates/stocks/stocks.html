@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block styling %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/stocks_style.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="stock-container">
+  <div class="stock-table-heading">
+    <h1>Portfolio</h1>
+    <a class="add-button" href="{{ url_for('stocks.add_stock') }}">Add Stock</a>
+  </div>
+
+  <table class="stock-table">
+    <!-- Table Header Row -->
+    <thead>
+      <tr>
+        <th>Stock Symbol</th>
+        <th>Number of Shares</th>
+        <th>Purchase Price</th>
+        <th>Purchase Date</th>
+        <th>Current Share Price</th>
+        <th>Stock Position Value</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <!-- Table Elements (Rows) -->
+    <tbody>
+      {% for stock in stocks %}
+        <tr>
+          <td><a href="{{ url_for('stocks.stock_details', id=stock.id) }}">{{ stock.stock_symbol }}</a></td>
+          <td>{{ stock.number_of_shares }}</td>
+          <td>${{ stock.purchase_price / 100 }}</td>
+          <td>{{ stock.purchase_date.strftime("%Y-%m-%d") }}</td>
+          <td>${{ stock.current_price / 100 }}</td>
+          <td>${{ stock.position_value / 100 }}</td>
+          <td class="stock-actions">
+            <a class="stocks-actions-link" href="{{ url_for('stocks.delete_stock', id=stock.id) }}">Delete</a>
+            <a class="stocks-actions-link" href="{{ url_for('stocks.edit_stock', id=stock.id) }}">Edit</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+
+    <!-- Footer Row -->
+    <tfoot>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><b>TOTAL VALUE</b></td>
+        <td><b>${{ value }}</b></td>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+{% endblock %}

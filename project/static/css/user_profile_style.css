@@ -1,0 +1,44 @@
+/* User Profile Styling
+ **********************/
+
+.user-profile-title {
+  text-align: center;
+  font-size: 2.0rem;
+}
+
+.card {
+  background: var(--card-bg-color);
+  border-radius: 5px;
+}
+
+.card + .card {
+  margin-top: var(--spacer);
+}
+
+.card-heading {
+  margin-bottom: var(--spacer);
+  padding: var(--spacer) var(--spacer) 8px;
+  border-bottom: 1px solid var(--bg-color);
+  font-weight: 300;
+}
+
+.card-body {
+  padding: 8px var(--spacer) var(--spacer);
+}
+
+.card-body p {
+  margin-bottom: 0.5em;
+}
+
+.card-body ul {
+  margin-left: 2em;
+  margin-bottom: 0.5em;
+}
+
+.card-body h3 {
+  padding-bottom: 0.5em;
+}
+
+.card-body-heading {
+  margin-top: 1.5em;
+}

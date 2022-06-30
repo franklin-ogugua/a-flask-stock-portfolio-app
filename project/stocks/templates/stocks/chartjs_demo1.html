@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block styling %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/stocks_style.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<h2>Chart.js Demo #1</h2>
+<br>
+<canvas id="stockChart" width="500" height="400"></canvas>
+{% endblock %}
+
+{% block javascript %}
+<script>
+// Get the canvas element for modifying the data contents
+var ctx = document.getElementById('stockChart').getContext('2d');
+
+// Set the default font color for each chart
+Chart.defaults.global.defaultFontColor = 'black';
+
+// Create a new line chart
+var myChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    datasets: [{
+      label: 'Count',
+      data: [12, 19, 3, 5, 2, 3],
+      backgroundColor: 'blue',
+      borderColor: 'white',
+      borderWidth: 1,
+    }]
+  },
+});
+</script>
+{% endblock %}

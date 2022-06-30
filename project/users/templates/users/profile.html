@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block styling %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/user_profile_style.css') }}">
+{% endblock %}
+
+{% block content %}
+<h1>User Profile</h1>
+
+<div class="card">
+  <div class="card-heading">
+    <h2>Account</h2>
+  </div>
+  <div class="card-body">
+    <p>Email: {{ current_user.email }}</p>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-heading">
+    <h2>Account Statistics</h2>
+  </div>
+  <div class="card-body">
+    <p>Joined on {{ current_user.registered_on.strftime("%A, %B %d, %Y") }}</p>
+    {% if current_user.email_confirmed %}
+      <p>Email address confirmed on {{ current_user.email_confirmed_on.strftime("%A, %B %d, %Y") }}</p>
+    {% else %}
+      <p>Email address has not been confirmed!</p>
+    {% endif %}
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-heading">
+    <h2>Account Actions</h2>
+  </div>
+  <div class="card-body">
+    <p><a href="{{ url_for('users.change_password') }}">Change Password</a></p>
+    {% if not current_user.email_confirmed %}
+      <p><a href="{{ url_for('users.resend_email_confirmation') }}">Resend Email Confirmation</a></p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

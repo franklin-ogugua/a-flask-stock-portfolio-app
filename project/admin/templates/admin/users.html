@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block styling %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/stocks_style.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="stock-container">
+  <h1>List of Users</h1>
+
+  <table class="stock-table">
+    <!-- Table Header Row -->
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Registration Date</th>
+        <th>Email Confirmation Date</th>
+        <th>User Type</th>
+        <th># of Stocks in Portfolio</th>
+        <th># of Stocks in Watchlist</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <!-- Table Elements (Rows) -->
+    <tbody>
+      {% for user in users %}
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.registered_on.strftime("%Y-%m-%d") }}</td>
+          {%  if user.email_confirmed %}
+            <td>{{ user.registered_on.strftime("%Y-%m-%d") }}</td>
+          {% else %}
+            <td>-</td>
+          {% endif %}
+          <td>{{ user.user_type }}</td>
+          <td>{{ user.number_of_stocks_in_portfolio }}</td>
+          <td>{{ user.number_of_stocks_in_watchlist }}</td>
+          <td class="users-actions">
+            <a class="users-actions-link" href="{{ url_for('admin.admin_delete_user', id=user.id) }}">Delete User</a>
+            {% if user.email_confirmed %}
+              <a class="users-actions-link" href="{{ url_for('admin.admin_unconfirm_email_address', id=user.id) }}">Unconfirm Email</a>
+            {% else %}
+              <a class="users-actions-link" href="{{ url_for('admin.admin_confirm_email_address', id=user.id) }}">Confirm Email</a>
+            {% endif %}
+            <br>
+            <a class="users-actions-link" href="{{ url_for('admin.admin_change_email', id=user.id) }}">Change Email</a>
+            <a class="users-actions-link" href="{{ url_for('admin.admin_change_password', id=user.id) }}">Change Password</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+
+  </table>
+</div>
+{% endblock %}

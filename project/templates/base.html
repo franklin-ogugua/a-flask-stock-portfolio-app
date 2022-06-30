@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Flask Stock Portfolio App</title>
+
+    <!-- Local CSS file for styling the application-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base_style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.png') }}" type="image/x-icon">
+
+    <!-- Additional Styling -->
+    {% block styling %}
+    {% endblock %}
+  </head>
+
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <ul class="nav-list">
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('stocks.index') }}">Flask Stock Portfolio App</a></li>
+        </ul>
+        <ul class="nav-list">
+          {% if current_user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('stocks.list_stocks') }}">Portfolio</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('watchlist.watchlist') }}">Watchlist</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('users.user_profile') }}">Profile</a></li>
+            {% if current_user.user_type == 'Admin' %}
+              <li class="nav-item"><a class="nav-link" href="{{ url_for('admin.admin_list_users') }}">Admin</a></li>
+            {% endif %}
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('users.logout') }}">Logout</a></li>
+          {% else %}
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('users.register') }}">Register</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('users.login') }}">Login</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
+
+    <div class="messages">
+      <!-- flash messages - supported categories: success, info, error, message (default) -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="flash-message flash-message-{{ category }}">
+              <p>{{ message }}</p>
+              <span class="close-btn" onclick="this.parentElement.style.opacity=0;">
+                <svg width="12" height="12" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <path d="m49.941 35.891 33.531-33.531 14.168 14.168-33.531 33.414 33.531 33.531-14.168 14.168-33.531-33.531-33.414 33.531-14.168-14.168 33.531-33.531-33.531-33.414 14.168-14.168z" fill-rule="evenodd" fill="currentColor"/>
+                </svg>
+              </span>
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </div>
+
+    <main class="content">
+      <!-- child template -->
+      {% block content %}
+      {% endblock %}
+    </main>
+
+    <footer class="site-footer">
+      <small><a href="https://testdriven.io">TestDriven.io</a> - 2022</small>
+    </footer>
+
+    {% block javascript %}
+    {% endblock %}
+
+  </body>
+</html>

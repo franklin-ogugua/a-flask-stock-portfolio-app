@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block styling %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/user_profile_style.css') }}">
+{% endblock %}
+
+{% block content %}
+<h1>Stock Analysis Guide</h1>
+
+<div class="card">
+    <div class="card-heading">
+        <h2>Overview</h2>
+    </div>
+    <div class="card-body">
+        <p>This guide provides an overview into how to analyze stocks, including the stock metrics that are displayed in the watchlist.</p>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-heading">
+        <h2>Investing Philosophy</h2>
+    </div>
+    <div class="card-body">
+        <p>Investing in stocks in difficult, but it is a great long-term strategy for accumulating wealth.</p>
+        <p>Stocks have historically outperformed other investments, such as bonds, commodities, CDs (Certificates of Deposit), savings accounts, etc.</p>
+        <p>When investing in stocks, there are two different approaches: <b>passive</b> and <b>active</b>.</p>
+        <p>Passive investing means buying broad-market index funds or ETFs (Exchange Traded Funds) and holding on to them for the long-term (5+ years). For example:</p>
+        <ul>
+            <li><a href="https://investor.vanguard.com/mutual-funds/profile/VFIAX">Vanguard S&P 500 Index Fund</a></li>
+            <li><a href="https://investor.vanguard.com/etf/profile/VOO">Vanguard S&P 500 ETF</a></li>
+            <li><a href="https://www.invesco.com/qqq-etf/en/home.html">Invesco QQQ (tracks Nasdaq 100)</a></li>
+        </ul>
+        <p>Active investing means taking a more hands-on approach by picking individual stocks to purchase and trading at a reasonable frequency (not day-trading!).</p>
+        <p>Combining both approaches is actually a great tool, as some of your assets are tracking major indices (passive investments), while you are also keeping track of individual stocks to purchase/sell based on market conditions and trends.</p>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-heading">
+        <h2>Stock Analysis - Key Considerations</h2>
+    </div>
+    <div class="card-body">
+        <p>Determining which stocks to purchase (and subsequently when to sell them) is an art, not a science. Unfortunately, there is no clear approach that always works or everyone would make tons of money in the stock market.</p>
+        <p>However, there are a lot of key areas to focus on when selecting stocks that can help in picking successful stock investments:</p>
+        <ul>
+            <li>Financial conditions - do the key financial metrics show a healthy company relative to its stock price?</li>
+            <li>Economic moat - does the company have a competitive advantage?</li>
+            <li>Great brand - is there intrinsic value in the brand that adds value to the stock?</li>
+            <li>Growth opportunities - are there opportunities in the near future for the company to grow?</li>
+        </ul>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-heading">
+        <h2>Stock Analysis - Financial Metrics</h2>
+    </div>
+    <div class="card-body">
+        <h3>52-Week High/Low</h3>
+        <p>The 52-week high refers to the highest market price of a given security over a 52-week (one year) period.</p>
+        <p>The 52-week high serves as an indicator for potential investors. Investor's will often reference the 52-week high for a stock when looking at the current price.</p>
+        <p>While it may be tempting to think that you should buy a stock when it's close to it's 52-week low and sell when it's close to its 52-week high, this approach isn't guaranteed to work.</p>
+        <p>In fact, a lot of great stocks will trade near there 52-week high as their stock price continues to rise.</p>
+
+        <h3 class="card-body-heading">Market Capitalization</h3>
+        <p>Market capitalization (or market cap) is the total value of the tradable shares of a publicly traded company; it is equal to the share price times the number of shares outstanding. As outstanding stock is bought and sold in public markets, capitalization could be used as a proxy for the public opinion of a company's net worth and is a determining factor in some forms of stock valuation. Preferred shares are included in the calculation.</p>
+        <p>Rule of thumb for different cap classes:</p>
+        <ul>
+            <li>Mega-cap: Over $200 billion</li>
+            <li>Large-cap: Over $10 billion</li>
+            <li>Mid-cap: $2 billion–$10 billion</li>
+            <li>Small-cap: $250 million–$2 billion</li>
+            <li>Micro-cap: Below $250 million</li>
+            <li>Nano-cap: Below $50 million</li>
+        </ul>
+
+        <h3 class="card-body-heading">Dividends</h3>
+        <p>Dividends are payments that a company makes to its shareholders (people that own its stock).</p>
+        <p>Typically, larger and well-established companies will pay out dividends.</p>
+        <p>There is a sub-category of investing that focuses entirely on investing in dividend-paying stocks for long-term investing.</p>
+        <p>A quick metric to check for a company is the "Dividend Per Share", which defines how much money the company pays each shareholder over a 1-year period.</p>
+
+        <h3 class="card-body-heading">Price-to-Earnings (PE) Ratio</h3>
+        <p>It's not unusual to pay a P/E of as much as 20 times earnings for a faster-growing company with a strong competitive advantage, but make sure the price you pay isn't too high for the quality of company you're buying.</p>
+        <p>The S&P 500 has historically traded for around 16 times earnings. So a struggling-yet-recovering company might be a bargain with a high single-digit P/E, whereas a stronger business could be bargain with a P/E in the high teens.</p>
+
+        <h3 class="card-body-heading">Price-to-Earnings-Growth (PEG) Ratio</h3>
+        <p>The PEG Ratio takes the P/E Ratio and incorporates the expected earnings growth to provide a valuation of a company.</p>
+        <p>At a high-level, a PEG Ratio can be interpreted as:</p>
+        <ul>
+            <li>< 1.0 - indicates that a stock is undervalued</li>
+            <li>> 1.0 - indicates a stock is overvalued</li>
+        </ul>
+        <p>However, the PEG ratio can vary from industry to industry and it fluctuates based on overall market conditions as well.</p>
+        <p>It's best to use the PEG ratio when comparing companies in similar industries (ie. Home Depot vs. Lowes)</p>
+        <p>More information: <a href="https://www.fool.com/knowledge-center/peg-ratio.aspx">Motley Fool - What Is the PEG Ratio?</a></p>
+
+        <h3 class="card-body-heading">Profit Margin</h3>
+        <p>Profit margin indicates the percentage of sales that get turned into profits. This metric gauges how well a company is making money.</p>
+        <p>This metric quickly indicates if a company is profitable or not. As with the PEG Ratio, profit margins vary by industry.</p>
+
+        <h3 class="card-body-heading">Price-to-Book Ratio</h3>
+        <p>The book value of a company is the value of its assets minus its liabilities (which can be found in a company's balance sheet).</p>
+        <p>One of the key concepts of value investing is finding stocks that are under-priced. The book value of a company is often used to find under-priced stocks.</p>
+        <p>The Price-to-Book Value ratio is a good metric for comparing companies in similar industries.</p>
+    </div>
+</div>
+
+{% endblock %}

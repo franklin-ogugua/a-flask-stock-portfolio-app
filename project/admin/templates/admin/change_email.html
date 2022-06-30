@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block styling %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/form_style.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="form-wrap">
+  <h1>Change Email</h1>
+
+  <form method="post">
+    {{ form.csrf_token }}
+
+    <div class="field">
+      {{ form.email.label }}
+      {{ form.email }}
+      {% for error in form.email.errors %}
+        <p class="validation-error">[{{ error }}]</p>
+      {% endfor %}
+    </div>
+
+    <div class="field">
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,128 @@
+/* Form Styling
+ **************/
+
+.form-wrap {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  width: 30rem;
+  padding: 2rem;
+  background: white;
+  border-radius: var(--radius);
+}
+
+.form__title {
+  margin-bottom: 1.75rem;
+}
+
+.form__group {
+  position: relative;
+  height: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.form__input {
+  width: 100%;
+  height: 100%;
+  border: 2px solid lightgray;
+  border-radius: 0.5rem;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: 1.1rem;
+  color: inherit;
+  outline: none;
+  padding: 1.25rem;
+  background: none;
+}
+
+.form__input:hover, .form__input:focus {
+  border-color: darkblue;
+}
+
+.form__label {
+  position: absolute;
+  left: 1rem;
+  top: 0.9rem;
+  padding: 0 0.5rem;
+  background-color: white;
+  transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
+}
+
+.form__button {
+  padding: 0.75rem 2rem;
+  background-color: blue;
+  color: white;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: 1.0rem;
+  border-radius: 0.5rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 200ms ease-in, color 200ms ease-in;
+}
+
+.form__button:hover {
+  background-color: #0101a2;
+  /*color: black;*/
+}
+
+/*
+1. When the input is in the focus state
+reduce the size of the label and move upwards
+
+2. Keep label state when content is in input field
+*/
+
+.form__input:focus ~ .form__label,
+.form__input:not(:placeholder-shown).form__input:not(:focus) ~ .form__label {
+  top: -0.5rem;
+  left: 0.8rem;
+  font-size: 0.8rem;
+}
+
+.validation-error {
+  color: red;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: 0.8rem;
+}
+
+
+/* Change Autocomplete styles in Chrome to match form style*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: black;
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+
+input[type="checkbox"] {
+  height: 1.0em;
+  width: 1.0em;
+}
+
+.form__checkbox {
+  display: flex;
+  align-items: center;
+  padding-bottom: 1.0rem;
+}
+
+.form__checkbox label {
+  order: 1;
+  margin-left: 1ch;
+}
+
+.form__checkbox input {
+  order: 0;
+}
+
+
+.forgot-password {
+  margin-top: 1.5rem;
+  font-size: 1.0rem;
+}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block styling %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/form_style.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="form-wrap">
+  <h1>Add Stock to Watchlist</h1>
+
+  <form method="post">
+    {{ form.csrf_token }}
+
+    <div class="field">
+      {{ form.stock_symbol.label }}
+      {{ form.stock_symbol }}
+      {% for error in form.stock_symbol.errors %}
+        <p class="validation-error">[{{ error }}]</p>
+      {% endfor %}
+    </div>
+
+    <div class="field">
+      {{ form.submit() }}
+    </div>
+  </form>
+</div>
+{% endblock %}
